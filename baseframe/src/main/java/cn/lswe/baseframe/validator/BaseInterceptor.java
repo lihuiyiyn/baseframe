@@ -19,7 +19,7 @@ public class BaseInterceptor extends HandlerInterceptorAdapter {
 		ChatValidator chatValidatorAnnotation = method.getAnnotation(ChatValidator.class);
 		if (chatValidatorAnnotation != null) {
 			String accessToken = request.getParameter("access_token");
-			if (!accessToken.equals("123")) {
+			if (!"123".equals(accessToken)) {
 				AuthenticationFailed(response);
 				return false;
 			}

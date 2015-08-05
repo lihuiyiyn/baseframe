@@ -22,7 +22,8 @@ public class TestController {
 	@AuthorityValidator
 	@ResponseBody
 	@RequestMapping("/test/controller")
-	public String test(TestReqBean reqBean) {
+	public String test(TestReqBean reqBean) throws Exception {
+		System.out.println("testController");
 		return JSON.toJSONString(testService.testService(reqBean));
 	}
 }

@@ -27,17 +27,19 @@
 
 	<!-- 默认扫描的包路径 -->
 	<context:component-scan base-package="cn.lswe.baseframe" />
+
 	<!-- task任务扫描注解 -->
 	<task:annotation-driven />
 
+	<mvc:interceptors>
+		<bean class="cn.lswe.baseframe.validator.BaseInterceptor" />
+	</mvc:interceptors>
+
 	<bean
-		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
-		<property name="interceptors">
-			<list>
-				<bean class="cn.lswe.baseframe.validator.BaseInterceptor" />
-			</list>
-		</property>
-	</bean>
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+
 	<bean
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+
+	<bean class="cn.lswe.baseframe.handler.ExceptionHandler" />
 </beans>

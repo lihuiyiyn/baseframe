@@ -10,6 +10,7 @@ import cn.lswe.baseframe.bean.TestEntity;
 import cn.lswe.baseframe.bean.TestReqBean;
 import cn.lswe.baseframe.bean.TestRspBean;
 import cn.lswe.baseframe.dao.TestDao;
+import cn.lswe.baseframe.handler.BaseException;
 
 /**
  * @author sam
@@ -20,7 +21,7 @@ public class TestService {
 	@Autowired
 	private TestDao testDao;
 
-	public TestRspBean testService(TestReqBean reqBean) {
+	public TestRspBean testService(TestReqBean reqBean) throws BaseException {
 		TestRspBean testRspBean = new TestRspBean();
 		TestEntity te = new TestEntity();
 		te.setAge(reqBean.getAge());

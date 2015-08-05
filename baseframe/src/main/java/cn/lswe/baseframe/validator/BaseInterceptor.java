@@ -1,53 +1,29 @@
 package cn.lswe.baseframe.validator;
 
-import java.io.IOException;
-import java.lang.reflect.Method;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
-public class BaseInterceptor extends HandlerInterceptorAdapter {
+public class BaseInterceptor implements HandlerInterceptor {
 
+	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		HandlerMethod handlerMethod = (HandlerMethod) handler;
-		Method method = handlerMethod.getMethod();
-		// 会话校验
-		ChatValidator chatValidatorAnnotation = method.getAnnotation(ChatValidator.class);
-		if (chatValidatorAnnotation != null) {
-			String accessToken = request.getParameter("access_token");
-			if (!"123".equals(accessToken)) {
-				AuthenticationFailed(response);
-				return false;
-			}
-		}
-		AuthorityValidator authorityValidatorAnnotation = method.getAnnotation(AuthorityValidator.class);
-		if (authorityValidatorAnnotation != null) {
-			System.out.println(getIpAddr(request));
-		}
-		// 有白名单验证的注解
+		System.out.println(handler.getClass().getSimpleName());
 		return true;
 	}
 
-	private void AuthenticationFailed(HttpServletResponse response) throws IOException {
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write("No Session or No Authority");
+	@Override
+	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
+			ModelAndView modelAndView) throws Exception {
+
 	}
 
-	private String getIpAddr(HttpServletRequest request) {
-		String ip = request.getHeader("x-forwarded-for");
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("Proxy-Client-IP");
-		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("WL-Proxy-Client-IP");
-		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getRemoteAddr();
-		}
-		return ip;
+	@Override
+	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
+			throws Exception {
+
 	}
 }

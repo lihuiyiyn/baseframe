@@ -13,7 +13,7 @@ public class TestReqBean extends BaseReq {
 
 	private String name;
 
-	private int age;
+	private String age;
 
 	/**
 	 * @return the name
@@ -33,7 +33,7 @@ public class TestReqBean extends BaseReq {
 	/**
 	 * @return the age
 	 */
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
@@ -41,7 +41,7 @@ public class TestReqBean extends BaseReq {
 	 * @param age
 	 *            the age to set
 	 */
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
 }

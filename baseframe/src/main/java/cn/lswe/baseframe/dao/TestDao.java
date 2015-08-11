@@ -3,6 +3,8 @@
  */
 package cn.lswe.baseframe.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -25,5 +27,13 @@ public class TestDao {
 		} catch (Exception e) {
 			throw new BaseException("BaseException");
 		}
+	}
+
+	public int update(TestEntity testEntity) {
+		return sqlSession.update("TestMapper.update", testEntity);
+	}
+
+	public List<TestEntity> select() {
+		return sqlSession.selectList("TestMapper.select");
 	}
 }

@@ -4,7 +4,7 @@ public class TestEntity {
 
 	private String name;
 
-	private int age;
+	private String age;
 
 	/**
 	 * @return the name
@@ -24,7 +24,7 @@ public class TestEntity {
 	/**
 	 * @return the age
 	 */
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
 
@@ -32,7 +32,14 @@ public class TestEntity {
 	 * @param age
 	 *            the age to set
 	 */
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
+	}
+
+	@Override
+	public String toString() {
+		return "TestEntity [name=" + name + ", age=" + age + ", getName()=" + getName() + ", getAge()=" + getAge()
+				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString()
+				+ "]";
 	}
 }

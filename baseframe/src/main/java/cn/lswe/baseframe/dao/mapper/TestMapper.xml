@@ -17,4 +17,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		#{age}
 		)
 	</insert>
+
+	<update id="update">
+		UPDATE testTable
+		SET `name` = #{name},
+		age = #{age}
+	</update>
+
+	<select id="select" resultMap="testMap">
+		SELECT * FROM testTable
+	</select>
+
+	<resultMap type="cn.lswe.baseframe.bean.TestEntity" id="testMap">
+		<result column="name" property="name" />
+		<result column="age" property="age" />
+	</resultMap>
 </mapper>

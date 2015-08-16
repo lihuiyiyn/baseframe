@@ -20,6 +20,10 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	public String regist() {
+		return "";
+	}
+
 	@ResponseBody
 	@RequestMapping("/user/v1/login")
 	public String login(UserReqBean userReqBean) {

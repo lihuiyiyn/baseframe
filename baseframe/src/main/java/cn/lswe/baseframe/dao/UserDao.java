@@ -12,7 +12,12 @@ public class UserDao {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public int select(UserReqBean userReqBen) {
+	/**
+	 * 
+	 * @param userReqBen
+	 * @return
+	 */
+	public int varify(UserReqBean userReqBen) {
 		return sqlSession.selectOne("UserMapper.loginRet", userReqBen);
 	}
 }

@@ -35,10 +35,14 @@ public class UserService {
 			baseRspBean.setError_message("密码不能为空");
 			return baseRspBean;
 		}
-		// 2.与Dao层交互
-		int count = userDao.select(userReqBean);
+		// 2.与dao层交互
+		int count = userDao.varify(userReqBean);
 		if (count == 0) {
 			// 说明密码表中有账号和密码都符合的
+			baseRspBean.setError_code(-1);
+			baseRspBean.setError_message("账号或者密码有误");
+			// 可以利用缓存添加连续几次登录失败禁止登录方法
+			return baseRspBean;
 		} else {
 			// 登录成功
 			// （1）生成Token

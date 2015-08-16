@@ -3,13 +3,13 @@
  */
 package cn.lswe.baseframe.bean;
 
-import cn.lswe.baseframe.bean.base.BaseReq;
+import cn.lswe.baseframe.bean.base.BaseReqBean;
 
 /**
  * @author sam
  *
  */
-public class TestReqBean extends BaseReq {
+public class TestReqBean extends BaseReqBean {
 
 	private String name;
 

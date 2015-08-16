@@ -3,12 +3,12 @@
  */
 package cn.lswe.baseframe.bean;
 
-import cn.lswe.baseframe.bean.base.BaseRsp;
+import cn.lswe.baseframe.bean.base.BaseRspBean;
 
 /**
  * @author sam
  */
-public class TestRspBean extends BaseRsp {
+public class TestRspBean extends BaseRspBean {
 
 	private String testStr;
 

@@ -15,6 +15,7 @@ import cn.lswe.baseframe.service.UserService;
  * @author sam
  */
 @Controller
+@RequestMapping("/user")
 public class UserController {
 
 	@Autowired
@@ -25,11 +26,17 @@ public class UserController {
 	}
 
 	@ResponseBody
-	@RequestMapping(value = "/user/v1/login", produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/v1/login", produces = "text/html;charset=UTF-8")
 	public String login(UserReqBean userReqBean) {
 		System.out.println(userReqBean);
 		BaseRspBean baseRspBean = userService.login(userReqBean);
 		System.out.println(baseRspBean);
 		return JSON.toJSONString(baseRspBean);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/v1/loginByVerifyCode", produces = "text/html;charset=UTF-8")
+	public String loginBySms() {
+		return "";
 	}
 }

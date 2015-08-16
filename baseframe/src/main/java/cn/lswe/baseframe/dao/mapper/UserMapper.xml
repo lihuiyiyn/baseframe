@@ -5,9 +5,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="UserMapper">
 
 	<select id="loginRet" resultType="Integer">
-		SELECT COUNT(0) FROM TEST_USER
+		SELECT COUNT(0) FROM User
 		WHERE
 		PHONE=#{phoneNumber} OR
-		EMAIL=#{email} AND PASSWORD=#{password}
+		EMAIL=#{email} AND PASS=#{password}
 	</select>
 </mapper>

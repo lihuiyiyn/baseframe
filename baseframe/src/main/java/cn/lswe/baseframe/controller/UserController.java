@@ -25,9 +25,11 @@ public class UserController {
 	}
 
 	@ResponseBody
-	@RequestMapping("/user/v1/login")
+	@RequestMapping(value = "/user/v1/login", produces = "text/html;charset=UTF-8")
 	public String login(UserReqBean userReqBean) {
+		System.out.println(userReqBean);
 		BaseRspBean baseRspBean = userService.login(userReqBean);
+		System.out.println(baseRspBean);
 		return JSON.toJSONString(baseRspBean);
 	}
 }

@@ -42,4 +42,5 @@
 		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
 
 	<bean class="cn.lswe.baseframe.handler.ExceptionHandler" />
+
 </beans>

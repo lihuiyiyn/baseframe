@@ -3,6 +3,11 @@ package cn.lswe.baseframe.bean.base;
 public class BaseRspBean {
 
 	/**
+	 * session_id
+	 */
+	private String token;
+
+	/**
 	 * 服务器状态码，0 为正常状态，异常状态待定。
 	 */
 	private int error_code = 0;
@@ -16,6 +21,21 @@ public class BaseRspBean {
 	 * 数据字段
 	 */
 	private BaseData data;
+
+	/**
+	 * @return the token
+	 */
+	public String getToken() {
+		return token;
+	}
+
+	/**
+	 * @param token
+	 *            the token to set
+	 */
+	public void setToken(String token) {
+		this.token = token;
+	}
 
 	/**
 	 * @return the error_code
@@ -64,9 +84,7 @@ public class BaseRspBean {
 
 	@Override
 	public String toString() {
-		return "BaseRspBean [error_code=" + error_code + ", error_message=" + error_message + ", data=" + data
-				+ ", getError_code()=" + getError_code() + ", getError_message()=" + getError_message() + ", getData()="
-				+ getData() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return "BaseRspBean [token=" + token + ", error_code=" + error_code + ", error_message=" + error_message
+				+ ", data=" + data + ", toString()=" + super.toString() + "]";
 	}
 }

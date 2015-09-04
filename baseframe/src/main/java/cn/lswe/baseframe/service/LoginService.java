@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import cn.lswe.baseframe.bean.LoginByVerifyCodeReqBean;
 import cn.lswe.baseframe.bean.LoginReqBean;
+import cn.lswe.baseframe.bean.LoginUserInfoData;
 import cn.lswe.baseframe.bean.UserReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
 import cn.lswe.baseframe.dao.LoginDao;
@@ -22,17 +23,26 @@ public class LoginService {
 	private LoginDao loginDao;
 
 	/**
-	 * 登录
+	 * 3.1 获取用户信息
 	 * 
-	 * @param loginReqBean
+	 * @param baseReqBean
 	 * @return
 	 */
 	public BaseRspBean login(LoginReqBean loginReqBean) {
-		BaseRspBean BaseRspBean = new BaseRspBean();
+		BaseRspBean baseRspBean = new BaseRspBean();
 		String account = loginReqBean.getAccount();
-		//使用正则匹配输入的是email/phoneNumber/user_id
-
-		return BaseRspBean;
+		String code = loginReqBean.getCode();
+		if (account == null || code == null) {
+			baseRspBean.setError_code(-1);
+			baseRspBean.setError_message("账号与密码不能同时为空");
+			return baseRspBean;
+		} else {
+			// 去数据库中查询验证账号密码没错
+			LoginUserInfoData loginUserInfoData = new LoginUserInfoData();
+			// 此处放置从DB中查询到的用户信息数据，然后整合到loginUserInfoData
+			baseRspBean.setData(loginUserInfoData);
+		}
+		return baseRspBean;
 	}
 
 	/**

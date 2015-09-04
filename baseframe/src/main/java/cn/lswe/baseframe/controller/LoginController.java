@@ -24,6 +24,19 @@ public class LoginController {
 	@Autowired
 	private LoginService loginService;
 
+	/**
+	 * 3.1 获取用户信息
+	 * 
+	 * @param reqBean
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/v1/login", produces = "text/html;charset=UTF-8")
+	public String userInfo(LoginReqBean loginReqBean) {
+		BaseRspBean baseRspBean = loginService.login(loginReqBean);
+		return JSON.toJSONString(baseRspBean);
+	}
+
 	@ResponseBody
 	@RequestMapping(value = "/v1/login", produces = "text/html;charset=UTF-8")
 	public String login(LoginReqBean loginReqBean) {

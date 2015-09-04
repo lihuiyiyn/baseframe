@@ -46,7 +46,5 @@ public class LoginUserInfoData extends BaseData {
 	 * 家庭成员列表
 	 */
 	private List<GroupMemberBean> list_group_member;
-	
-	private 
 
 }

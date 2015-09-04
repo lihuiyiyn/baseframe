@@ -7,9 +7,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 
-import cn.lswe.baseframe.bean.LoginByVerifyCodeReqBean;
-import cn.lswe.baseframe.bean.UserInfoBean;
-import cn.lswe.baseframe.bean.UserReqBean;
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
 import cn.lswe.baseframe.service.UserService;
@@ -37,17 +34,5 @@ public class UserController {
 		return JSON.toJSONString(baseRspBean);
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/v1/login", produces = "text/html;charset=UTF-8")
-	public String login(UserReqBean userReqBean) {
-		BaseRspBean baseRspBean = userService.login(userReqBean);
-		return JSON.toJSONString(baseRspBean);
-	}
-
-	@ResponseBody
-	@RequestMapping(value = "/v1/loginByVerifyCode", produces = "text/html;charset=UTF-8")
-	public String loginBySms(LoginByVerifyCodeReqBean loginByVerifyCodeReqBean) {
-		BaseRspBean baseRspBean = userService.verifyByVerifyCode(loginByVerifyCodeReqBean);
-		return JSON.toJSONString(baseRspBean);
-	}
+	
 }

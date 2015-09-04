@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 
 import cn.lswe.baseframe.bean.LoginByVerifyCodeReqBean;
-import cn.lswe.baseframe.bean.UserInfoBean;
 import cn.lswe.baseframe.bean.UserReqBean;
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
@@ -32,26 +31,22 @@ public class UserController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/v1/userInfo", produces = "text/html;charset=UTF-8")
-	public String userInfo(BaseReqBean reqBean) {
-		UserInfoBean UserInfoBean = new UserInfoBean();
-		return "";
+	public String userInfo(BaseReqBean baseReqBean) {
+		BaseRspBean baseRspBean = userService.userInfo(baseReqBean);
+		return JSON.toJSONString(baseRspBean);
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/v1/login", produces = "text/html;charset=UTF-8")
 	public String login(UserReqBean userReqBean) {
-		System.out.println(userReqBean);
 		BaseRspBean baseRspBean = userService.login(userReqBean);
-		System.out.println(baseRspBean);
 		return JSON.toJSONString(baseRspBean);
 	}
 
 	@ResponseBody
 	@RequestMapping(value = "/v1/loginByVerifyCode", produces = "text/html;charset=UTF-8")
 	public String loginBySms(LoginByVerifyCodeReqBean loginByVerifyCodeReqBean) {
-		System.out.println(loginByVerifyCodeReqBean);
 		BaseRspBean baseRspBean = userService.verifyByVerifyCode(loginByVerifyCodeReqBean);
-		System.out.println(baseRspBean);
 		return JSON.toJSONString(baseRspBean);
 	}
 }

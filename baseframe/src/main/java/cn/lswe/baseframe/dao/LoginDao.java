@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package cn.lswe.baseframe.dao;
 
 import org.apache.ibatis.session.SqlSession;
@@ -6,11 +9,21 @@ import org.springframework.stereotype.Repository;
 
 import cn.lswe.baseframe.bean.UserReqBean;
 
+/**
+ * @author LauShallwe
+ */
 @Repository
-public class UserDao {
+public class LoginDao {
 
 	@Autowired
 	private SqlSession sqlSession;
 
-	
+	/**
+	 * 
+	 * @param userReqBen
+	 * @return
+	 */
+	public int varify(UserReqBean userReqBen) {
+		return sqlSession.selectOne("UserMapper.loginRet", userReqBen);
+	}
 }

@@ -10,7 +10,7 @@ import cn.lswe.baseframe.bean.base.BaseReqBean;
 public class LoginReqBean extends BaseReqBean {
 
 	/**
-	 * 账户：email/phone
+	 * 账户：email/phone/user_id
 	 */
 	private String account;
 

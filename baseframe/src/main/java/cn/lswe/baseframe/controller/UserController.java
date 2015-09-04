@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 
 import cn.lswe.baseframe.bean.LoginByVerifyCodeReqBean;
+import cn.lswe.baseframe.bean.UserInfoBean;
 import cn.lswe.baseframe.bean.UserReqBean;
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;

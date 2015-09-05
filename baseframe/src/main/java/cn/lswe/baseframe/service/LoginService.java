@@ -6,9 +6,10 @@ package cn.lswe.baseframe.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import cn.lswe.baseframe.bean.LoginByVerifyCodeReqBean;
+import cn.lswe.baseframe.bean.LoginPhoneReqBean;
 import cn.lswe.baseframe.bean.LoginReqBean;
 import cn.lswe.baseframe.bean.LoginUserInfoData;
+import cn.lswe.baseframe.bean.PhoneVerifyCodeReqBean;
 import cn.lswe.baseframe.bean.UserReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
 import cn.lswe.baseframe.dao.LoginDao;
@@ -23,9 +24,9 @@ public class LoginService {
 	private LoginDao loginDao;
 
 	/**
-	 * 3.1 获取用户信息
+	 * 13200优医就诊登录
 	 * 
-	 * @param baseReqBean
+	 * @param loginReqBean
 	 * @return
 	 */
 	public BaseRspBean login(LoginReqBean loginReqBean) {
@@ -46,12 +47,27 @@ public class LoginService {
 	}
 
 	/**
-	 * 短信验证码
+	 * 13202短信验证登录(获取短信验证码)
+	 * 
+	 * @param phoneVerifyCodeReqBean
+	 * @return
+	 */
+	public BaseRspBean phoneVerifyCode(PhoneVerifyCodeReqBean phoneVerifyCodeReqBean) {
+		BaseRspBean baseRspBean = new BaseRspBean();
+		// 1.正则匹配手机号码 如果手机号码不符合要求，返回错误信息
+		// 2.去数据库中查询是否有此用户
+		// 3.此用户存在，下发短信验证码，并且需要把验证码放入缓存
+		baseRspBean.setError_message("OK");
+		return baseRspBean;
+	}
+
+	/**
+	 * 13202短信验证登录(短信验证码验证)
 	 * 
 	 * @param loginBySmsReqBean
 	 * @return
 	 */
-	public BaseRspBean verifyByVerifyCode(LoginByVerifyCodeReqBean loginByVerifyCodeReqBean) {
+	public BaseRspBean loginPhone(LoginPhoneReqBean loginPhoneReqBean) {
 		BaseRspBean baseRspBean = new BaseRspBean();
 		// 1.校验参数
 		// 2.查询短信验证码是否有效

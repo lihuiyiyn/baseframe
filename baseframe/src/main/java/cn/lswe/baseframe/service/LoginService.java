@@ -8,6 +8,8 @@ import org.springframework.stereotype.Component;
 
 import cn.lswe.baseframe.bean.LoginPhoneReqBean;
 import cn.lswe.baseframe.bean.LoginReqBean;
+import cn.lswe.baseframe.bean.LoginSetCodeReqBean;
+import cn.lswe.baseframe.bean.LoginSetEmailReqBean;
 import cn.lswe.baseframe.bean.LoginUserInfoData;
 import cn.lswe.baseframe.bean.PhoneVerifyCodeReqBean;
 import cn.lswe.baseframe.bean.UserReqBean;
@@ -91,6 +93,34 @@ public class LoginService {
 				return baseRspBean;
 			}
 		}
+	}
+
+	/**
+	 * 13101设置登录密码
+	 * 
+	 * @param loginSetCodeReqBean
+	 * @return
+	 */
+	public BaseRspBean loginSetCode(LoginSetCodeReqBean loginSetCodeReqBean) {
+		BaseRspBean baseRspBean = new BaseRspBean();
+		// 1.去数据库中验证此账号是否已经被占用
+		// 2.插入数据到DB
+		// 3.返回设置结果
+		return baseRspBean;
+	}
+
+	/**
+	 * 13102设置邮箱
+	 * 
+	 * @param loginSetEmailReqBean
+	 * @return
+	 */
+	public BaseRspBean loginSetEmail(LoginSetEmailReqBean loginSetEmailReqBean) {
+		BaseRspBean baseRspBean = new BaseRspBean();
+		// 1.验证用户邮箱是否已经注册过
+		// 2.更新DB
+		// 3.返回设置结果
+		return baseRspBean;
 	}
 
 	/**

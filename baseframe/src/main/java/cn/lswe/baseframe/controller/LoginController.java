@@ -12,6 +12,8 @@ import com.alibaba.fastjson.JSON;
 
 import cn.lswe.baseframe.bean.LoginPhoneReqBean;
 import cn.lswe.baseframe.bean.LoginReqBean;
+import cn.lswe.baseframe.bean.LoginSetCodeReqBean;
+import cn.lswe.baseframe.bean.LoginSetEmailReqBean;
 import cn.lswe.baseframe.bean.PhoneVerifyCodeReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
 import cn.lswe.baseframe.service.LoginService;
@@ -61,6 +63,32 @@ public class LoginController {
 	@RequestMapping(value = "/v1/login_phone", produces = "text/html;charset=UTF-8")
 	public String loginPhone(LoginPhoneReqBean loginPhoneReqBean) {
 		BaseRspBean baseRspBean = loginService.loginPhone(loginPhoneReqBean);
+		return JSON.toJSONString(baseRspBean);
+	}
+
+	/**
+	 * 13101设置登录密码
+	 * 
+	 * @param loginSetCodeReqBean
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/v1/login_set_code", produces = "text/html;charset=UTF-8")
+	public String loginSetCode(LoginSetCodeReqBean loginSetCodeReqBean) {
+		BaseRspBean baseRspBean = loginService.loginSetCode(loginSetCodeReqBean);
+		return JSON.toJSONString(baseRspBean);
+	}
+
+	/**
+	 * 13102设置邮箱
+	 * 
+	 * @param loginSetEmailReqBean
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/v1/login_set_mail", produces = "text/html;charset=UTF-8")
+	public String loginSetEmail(LoginSetEmailReqBean loginSetEmailReqBean) {
+		BaseRspBean baseRspBean = loginService.loginSetEmail(loginSetEmailReqBean);
 		return JSON.toJSONString(baseRspBean);
 	}
 }

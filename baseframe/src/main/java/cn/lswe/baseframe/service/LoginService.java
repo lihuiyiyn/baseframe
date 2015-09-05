@@ -69,10 +69,28 @@ public class LoginService {
 	 */
 	public BaseRspBean loginPhone(LoginPhoneReqBean loginPhoneReqBean) {
 		BaseRspBean baseRspBean = new BaseRspBean();
-		// 1.校验参数
-		// 2.查询短信验证码是否有效
-		// 3.组装结果
-		return baseRspBean;
+		String phone = loginPhoneReqBean.getPhone();
+		String code = loginPhoneReqBean.getCode();
+		if (phone == null || code == null) {
+			baseRspBean.setError_code(3);
+			baseRspBean.setError_message("验证码错误");
+			return baseRspBean;
+		} else {
+			// 1.去缓存中验证code 是否正确
+			// 2.正确时
+			if (code.equals("new")) // 假方法
+			{
+				baseRspBean.setError_code(-1);
+				baseRspBean.setError_message("新用户");
+				return baseRspBean;
+			} else {
+				// 去数据库中查询验证账号密码没错
+				LoginUserInfoData loginUserInfoData = new LoginUserInfoData();
+				// 此处放置从DB中查询到的用户信息数据，然后整合到loginUserInfoData
+				baseRspBean.setData(loginUserInfoData);
+				return baseRspBean;
+			}
+		}
 	}
 
 	/**

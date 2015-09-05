@@ -52,7 +52,7 @@ public class LoginController {
 	}
 
 	/**
-	 * 13202短信验证登录(短信验证码验证)
+	 * 13202短信验证登录(验证短信验证码)
 	 * 
 	 * @param loginPhoneReqBean
 	 * @return

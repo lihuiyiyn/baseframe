@@ -13,6 +13,7 @@ import cn.lswe.baseframe.bean.base.BaseRspBean;
 import cn.lswe.baseframe.bean.setting.AddExpressAddressReqBean;
 import cn.lswe.baseframe.bean.setting.AddGroupMemberReqBean;
 import cn.lswe.baseframe.bean.setting.DelExpressAddressReqBean;
+import cn.lswe.baseframe.bean.setting.DelGroupMemberReqBean;
 import cn.lswe.baseframe.bean.setting.LoginSetNewCodeReqBean;
 
 /**
@@ -96,6 +97,28 @@ public class SettingService {
 	 * @return
 	 */
 	public BaseRspBean addGroupMember(AddGroupMemberReqBean addGroupMemberReqBean) {
+		BaseRspBean baseRspBean = new BaseRspBean();
+		return baseRspBean;
+	}
+
+	/**
+	 * 13108删除成员
+	 * 
+	 * @param delGroupMemberReqBean
+	 * @return
+	 */
+	public BaseRspBean delGroupMember(DelGroupMemberReqBean delGroupMemberReqBean) {
+		BaseRspBean baseRspBean = new BaseRspBean();
+		return baseRspBean;
+	}
+
+	/**
+	 * 请求退出账户
+	 * 
+	 * @param baseReqBean
+	 * @return
+	 */
+	public BaseRspBean exitAccount(BaseReqBean baseReqBean) {
 		BaseRspBean baseRspBean = new BaseRspBean();
 		return baseRspBean;
 	}

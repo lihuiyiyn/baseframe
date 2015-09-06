@@ -17,6 +17,7 @@ import cn.lswe.baseframe.bean.base.BaseRspBean;
 import cn.lswe.baseframe.bean.setting.AddExpressAddressReqBean;
 import cn.lswe.baseframe.bean.setting.AddGroupMemberReqBean;
 import cn.lswe.baseframe.bean.setting.DelExpressAddressReqBean;
+import cn.lswe.baseframe.bean.setting.DelGroupMemberReqBean;
 import cn.lswe.baseframe.bean.setting.LoginSetNewCodeReqBean;
 import cn.lswe.baseframe.service.SettingService;
 
@@ -104,6 +105,32 @@ public class SettingController {
 	@RequestMapping(value = "/v1/add_group_member", produces = "text/html;charset=UTF-8")
 	public String addGroupMember(AddGroupMemberReqBean addGroupMemberReqBean) {
 		BaseRspBean baseRspBean = settingService.addGroupMember(addGroupMemberReqBean);
+		return JSON.toJSONString(baseRspBean);
+	}
+
+	/**
+	 * 13108删除成员
+	 * 
+	 * @param delGroupMemberReqBean
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/v1/del_group_member", produces = "text/html;charset=UTF-8")
+	public String delGroupMember(DelGroupMemberReqBean delGroupMemberReqBean) {
+		BaseRspBean baseRspBean = settingService.delGroupMember(delGroupMemberReqBean);
+		return JSON.toJSONString(baseRspBean);
+	}
+
+	/**
+	 * 请求退出账户
+	 * 
+	 * @param baseReqBean
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/v1/exit_account", produces = "text/html;charset=UTF-8")
+	public String exitAccount(BaseReqBean baseReqBean) {
+		BaseRspBean baseRspBean = settingService.exitAccount(baseReqBean);
 		return JSON.toJSONString(baseRspBean);
 	}
 

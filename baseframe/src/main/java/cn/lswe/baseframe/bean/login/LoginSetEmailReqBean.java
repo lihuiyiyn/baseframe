@@ -1,7 +1,7 @@
 /**
  * 
  */
-package cn.lswe.baseframe.bean;
+package cn.lswe.baseframe.bean.login;
 
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 

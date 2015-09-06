@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 
-import cn.lswe.baseframe.bean.LoginPhoneReqBean;
-import cn.lswe.baseframe.bean.LoginReqBean;
-import cn.lswe.baseframe.bean.LoginSetCodeReqBean;
-import cn.lswe.baseframe.bean.LoginSetEmailReqBean;
-import cn.lswe.baseframe.bean.PhoneVerifyCodeReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
+import cn.lswe.baseframe.bean.login.LoginPhoneReqBean;
+import cn.lswe.baseframe.bean.login.LoginReqBean;
+import cn.lswe.baseframe.bean.login.LoginSetCodeReqBean;
+import cn.lswe.baseframe.bean.login.LoginSetEmailReqBean;
+import cn.lswe.baseframe.bean.login.PhoneVerifyCodeReqBean;
 import cn.lswe.baseframe.service.LoginService;
 
 /**

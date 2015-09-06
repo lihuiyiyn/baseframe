@@ -1,21 +1,22 @@
-package cn.lswe.baseframe.bean;
+/**
+ * 
+ */
+package cn.lswe.baseframe.bean.login;
 
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 
 /**
- * 13200优医就诊登录
- * 
- * @author sam
+ * @author LauShallwe
  */
-public class LoginReqBean extends BaseReqBean {
+public class LoginSetCodeReqBean extends BaseReqBean {
 
 	/**
-	 * 账户：email/phone/user_id
+	 * 账户名称
 	 */
 	private String account;
 
 	/**
-	 * 密码
+	 * 密码（MD5后）
 	 */
 	private String code;
 
@@ -51,6 +52,6 @@ public class LoginReqBean extends BaseReqBean {
 
 	@Override
 	public String toString() {
-		return "LoginReqBean [account=" + account + ", code=" + code + ", toString()=" + super.toString() + "]";
+		return "LoginSetCodeReqBean [account=" + account + ", code=" + code + ", toString()=" + super.toString() + "]";
 	}
 }

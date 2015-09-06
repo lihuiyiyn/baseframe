@@ -6,14 +6,14 @@ package cn.lswe.baseframe.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import cn.lswe.baseframe.bean.LoginPhoneReqBean;
-import cn.lswe.baseframe.bean.LoginReqBean;
-import cn.lswe.baseframe.bean.LoginSetCodeReqBean;
-import cn.lswe.baseframe.bean.LoginSetEmailReqBean;
 import cn.lswe.baseframe.bean.LoginUserInfoData;
-import cn.lswe.baseframe.bean.PhoneVerifyCodeReqBean;
 import cn.lswe.baseframe.bean.UserReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
+import cn.lswe.baseframe.bean.login.LoginPhoneReqBean;
+import cn.lswe.baseframe.bean.login.LoginReqBean;
+import cn.lswe.baseframe.bean.login.LoginSetCodeReqBean;
+import cn.lswe.baseframe.bean.login.LoginSetEmailReqBean;
+import cn.lswe.baseframe.bean.login.PhoneVerifyCodeReqBean;
 import cn.lswe.baseframe.dao.LoginDao;
 
 /**

@@ -7,7 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import cn.lswe.baseframe.bean.UserReqBean;
+import cn.lswe.baseframe.bean.login.LoginReqBean;
 
 /**
  * @author LauShallwe
@@ -19,11 +19,10 @@ public class LoginDao {
 	private SqlSession sqlSession;
 
 	/**
-	 * 
 	 * @param userReqBen
 	 * @return
 	 */
-	public int varify(UserReqBean userReqBen) {
-		return sqlSession.selectOne("UserMapper.loginRet", userReqBen);
+	public int login(LoginReqBean loginReqBean) {
+		return sqlSession.selectOne("LoginMapper.login", loginReqBean);
 	}
 }

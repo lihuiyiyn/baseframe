@@ -73,7 +73,7 @@ public class LoginController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/v1/login_set_code", produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/v1/login_set_init_code", produces = "text/html;charset=UTF-8")
 	public String loginSetCode(LoginSetCodeReqBean loginSetCodeReqBean) {
 		BaseRspBean baseRspBean = loginService.loginSetCode(loginSetCodeReqBean);
 		return JSON.toJSONString(baseRspBean);

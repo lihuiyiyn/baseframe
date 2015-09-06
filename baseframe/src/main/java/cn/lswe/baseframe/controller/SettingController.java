@@ -38,7 +38,7 @@ public class SettingController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/v1/login_set_code", produces = "text/html;charset=UTF-8")
-	public String loginSerNewCode(LoginSetNewCodeReqBean loginSetNewCodeReqBean) {
+	public String loginSetNewCode(LoginSetNewCodeReqBean loginSetNewCodeReqBean) {
 		BaseRspBean baseRspBean = settingService.loginSerNewCode(loginSetNewCodeReqBean);
 		return JSON.toJSONString(baseRspBean);
 	}

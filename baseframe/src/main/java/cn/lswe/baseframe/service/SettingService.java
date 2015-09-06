@@ -5,6 +5,7 @@ package cn.lswe.baseframe.service;
 
 import org.springframework.stereotype.Component;
 
+import cn.lswe.baseframe.bean.LoginUserInfoData;
 import cn.lswe.baseframe.bean.UserSettingEmailReqBean;
 import cn.lswe.baseframe.bean.UserSettingNickNameReqBean;
 //github.com/lswe/baseframe.git
@@ -134,6 +135,10 @@ public class SettingService {
 		// 1.去DB中查询
 		// 2.组装返回结果
 		// 3.返回设置结果
+		// 去数据库中查询验证账号密码没错
+		LoginUserInfoData loginUserInfoData = new LoginUserInfoData();
+		// 此处放置从DB中查询到的用户信息数据，然后整合到loginUserInfoData
+		baseRspBean.setData(loginUserInfoData);
 		return baseRspBean;
 	}
 }

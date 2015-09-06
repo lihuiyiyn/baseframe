@@ -6,6 +6,8 @@ package cn.lswe.baseframe.service;
 import org.springframework.stereotype.Component;
 
 import cn.lswe.baseframe.bean.LoginSetNewCodeReqBean;
+import cn.lswe.baseframe.bean.UserSettingEmailReqBean;
+import cn.lswe.baseframe.bean.UserSettingNickNameReqBean;
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
 
@@ -26,6 +28,34 @@ public class SettingService {
 		// 0.正则匹配密码是否符合规则
 		// 1.根据token到缓存中取用户信息
 		// 2.DB中更新密码
+		return baseRspBean;
+	}
+
+	/**
+	 * 13103请求修改昵称
+	 * 
+	 * @param userSettingNickNameReqBean
+	 * @return
+	 */
+	public BaseRspBean userSettingNickName(UserSettingNickNameReqBean userSettingNickNameReqBean) {
+		BaseRspBean baseRspBean = new BaseRspBean();
+		// 0.正则匹配密码是否符合规则
+		// 1.根据token到缓存中取用户信息
+		// 2.DB中更新昵称
+		return baseRspBean;
+	}
+
+	/**
+	 * 13104请求修改邮件
+	 * 
+	 * @param userSettingEmailReqBeanF
+	 * @return
+	 */
+	public BaseRspBean userSettingEmail(UserSettingEmailReqBean userSettingEmailReqBean) {
+		BaseRspBean baseRspBean = new BaseRspBean();
+		// 0.正则匹配密码是否符合规则
+		// 1.根据token到缓存中取用户信息
+		// 2.DB中更新email
 		return baseRspBean;
 	}
 

@@ -11,6 +11,7 @@ import cn.lswe.baseframe.bean.UserSettingNickNameReqBean;
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
 import cn.lswe.baseframe.bean.setting.AddExpressAddressReqBean;
+import cn.lswe.baseframe.bean.setting.AddGroupMemberReqBean;
 import cn.lswe.baseframe.bean.setting.DelExpressAddressReqBean;
 import cn.lswe.baseframe.bean.setting.LoginSetNewCodeReqBean;
 
@@ -85,6 +86,17 @@ public class SettingService {
 		BaseRspBean baseRspBean = new BaseRspBean();
 		// 1.根据token到缓存中取用户信息
 		// 2.DB中添加快递地址
+		return baseRspBean;
+	}
+
+	/**
+	 * 请求添加成员11105
+	 * 
+	 * @param addGroupMemberReqBean
+	 * @return
+	 */
+	public BaseRspBean addGroupMember(AddGroupMemberReqBean addGroupMemberReqBean) {
+		BaseRspBean baseRspBean = new BaseRspBean();
 		return baseRspBean;
 	}
 

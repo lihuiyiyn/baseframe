@@ -15,6 +15,7 @@ import cn.lswe.baseframe.bean.UserSettingNickNameReqBean;
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
 import cn.lswe.baseframe.bean.setting.AddExpressAddressReqBean;
+import cn.lswe.baseframe.bean.setting.AddGroupMemberReqBean;
 import cn.lswe.baseframe.bean.setting.DelExpressAddressReqBean;
 import cn.lswe.baseframe.bean.setting.LoginSetNewCodeReqBean;
 import cn.lswe.baseframe.service.SettingService;
@@ -90,6 +91,19 @@ public class SettingController {
 	@RequestMapping(value = "/v1/del_express_address", produces = "text/html;charset=UTF-8")
 	public String delExpressAddress(DelExpressAddressReqBean delExpressAddressReqBean) {
 		BaseRspBean baseRspBean = settingService.delExpressAddress(delExpressAddressReqBean);
+		return JSON.toJSONString(baseRspBean);
+	}
+
+	/**
+	 * 13107添加新成员--> 11105
+	 * 
+	 * @param addGroupMemberReqBean
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/v1/add_group_member", produces = "text/html;charset=UTF-8")
+	public String addGroupMember(AddGroupMemberReqBean addGroupMemberReqBean) {
+		BaseRspBean baseRspBean = settingService.addGroupMember(addGroupMemberReqBean);
 		return JSON.toJSONString(baseRspBean);
 	}
 

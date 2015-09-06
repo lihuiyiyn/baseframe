@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 
+import cn.lswe.baseframe.bean.LoginSetNewCodeReqBean;
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
 import cn.lswe.baseframe.service.SettingService;
@@ -22,6 +23,19 @@ public class SettingController {
 
 	@Autowired
 	private SettingService settingService;
+
+	/**
+	 * 13208设置登录密码
+	 * 
+	 * @param loginSetNewCodeReqBean
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/v1/login_set_code", produces = "text/html;charset=UTF-8")
+	public String loginSerNewCode(LoginSetNewCodeReqBean loginSetNewCodeReqBean) {
+		BaseRspBean baseRspBean = settingService.loginSerNewCode(loginSetNewCodeReqBean);
+		return JSON.toJSONString(baseRspBean);
+	}
 
 	/**
 	 * 13310用户设置 获取到用户设置信息

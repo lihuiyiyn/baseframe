@@ -5,6 +5,7 @@ package cn.lswe.baseframe.service;
 
 import org.springframework.stereotype.Component;
 
+import cn.lswe.baseframe.bean.LoginSetNewCodeReqBean;
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
 
@@ -13,6 +14,20 @@ import cn.lswe.baseframe.bean.base.BaseRspBean;
  */
 @Component
 public class SettingService {
+
+	/**
+	 * 13208设置登录密码
+	 * 
+	 * @param loginSetNewCodeReqBean
+	 * @return
+	 */
+	public BaseRspBean loginSerNewCode(LoginSetNewCodeReqBean loginSetNewCodeReqBean) {
+		BaseRspBean baseRspBean = new BaseRspBean();
+		// 0.正则匹配密码是否符合规则
+		// 1.根据token到缓存中取用户信息
+		// 2.DB中更新密码
+		return baseRspBean;
+	}
 
 	/**
 	 * 13310用户设置 获取到用户设置信息

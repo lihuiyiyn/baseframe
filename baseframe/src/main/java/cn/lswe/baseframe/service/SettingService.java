@@ -5,13 +5,14 @@ package cn.lswe.baseframe.service;
 
 import org.springframework.stereotype.Component;
 
+import cn.lswe.baseframe.bean.UserSettingEmailReqBean;
+import cn.lswe.baseframe.bean.UserSettingNickNameReqBean;
+//github.com/lswe/baseframe.git
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
 import cn.lswe.baseframe.bean.setting.AddExpressAddressReqBean;
 import cn.lswe.baseframe.bean.setting.DelExpressAddressReqBean;
 import cn.lswe.baseframe.bean.setting.LoginSetNewCodeReqBean;
-import cn.lswe.baseframe.bean.setting.UserSettingEmailReqBean;
-import cn.lswe.baseframe.bean.setting.UserSettingNickNameReqBean;
 
 /**
  * @author LauShallwe

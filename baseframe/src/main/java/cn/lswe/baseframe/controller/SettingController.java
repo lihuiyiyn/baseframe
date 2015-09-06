@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.alibaba.fastjson.JSON;
 
+import cn.lswe.baseframe.bean.UserSettingEmailReqBean;
+import cn.lswe.baseframe.bean.UserSettingNickNameReqBean;
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
 import cn.lswe.baseframe.bean.setting.AddExpressAddressReqBean;
 import cn.lswe.baseframe.bean.setting.DelExpressAddressReqBean;
 import cn.lswe.baseframe.bean.setting.LoginSetNewCodeReqBean;
-import cn.lswe.baseframe.bean.setting.UserSettingEmailReqBean;
-import cn.lswe.baseframe.bean.setting.UserSettingNickNameReqBean;
 import cn.lswe.baseframe.service.SettingService;
 
 /**

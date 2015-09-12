@@ -42,7 +42,6 @@ public class BaseInterceptor implements HandlerInterceptor {
 					ow.flush();
 					return false;
 				} else {
-request.
 					request.setAttribute("user", user);
 					return true;
 				}

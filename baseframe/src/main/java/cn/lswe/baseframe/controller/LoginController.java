@@ -3,6 +3,8 @@
  */
 package cn.lswe.baseframe.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,8 @@ import cn.lswe.baseframe.bean.login.LoginSetCodeReqBean;
 import cn.lswe.baseframe.bean.login.LoginSetEmailReqBean;
 import cn.lswe.baseframe.bean.login.PhoneVerifyCodeReqBean;
 import cn.lswe.baseframe.service.LoginService;
+import cn.lswe.baseframe.util.UserUtil;
+import cn.lswe.baseframe.validator.ChatValidator;
 
 /**
  * @author sam
@@ -36,6 +40,7 @@ public class LoginController {
 	@ResponseBody
 	@RequestMapping(value = "/v1/login", produces = "text/html;charset=UTF-8")
 	public String login(LoginReqBean loginReqBean) {
+		System.out.println(loginReqBean);
 		BaseRspBean baseRspBean = loginService.login(loginReqBean);
 		return JSON.toJSONString(baseRspBean);
 	}
@@ -72,9 +77,11 @@ public class LoginController {
 	 * @param loginSetCodeReqBean
 	 * @return
 	 */
+	@ChatValidator
 	@ResponseBody
 	@RequestMapping(value = "/v1/login_set_init_code", produces = "text/html;charset=UTF-8")
-	public String loginSetCode(LoginSetCodeReqBean loginSetCodeReqBean) {
+	public String loginSetCode(LoginSetCodeReqBean loginSetCodeReqBean, HttpServletRequest request) {
+		loginSetCodeReqBean.setUser(UserUtil.getUser(request));
 		BaseRspBean baseRspBean = loginService.loginSetCode(loginSetCodeReqBean);
 		return JSON.toJSONString(baseRspBean);
 	}

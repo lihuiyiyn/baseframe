@@ -23,6 +23,11 @@ public class BaseReqBean {
 	private String token;
 
 	/**
+	 * 用户对象
+	 */
+	private BaseUser user;
+
+	/**
 	 * @return the from
 	 */
 	public String getFrom() {
@@ -67,8 +72,23 @@ public class BaseReqBean {
 		this.token = token;
 	}
 
+	/**
+	 * @return the user
+	 */
+	public BaseUser getUser() {
+		return user;
+	}
+
+	/**
+	 * @param user
+	 *            the user to set
+	 */
+	public void setUser(BaseUser user) {
+		this.user = user;
+	}
+
 	@Override
 	public String toString() {
-		return "BaseReqBean [from=" + from + ", version=" + version + ", token=" + token + "]";
+		return "BaseReqBean [from=" + from + ", version=" + version + ", token=" + token + ", user=" + user + "]";
 	}
 }

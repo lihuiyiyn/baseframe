@@ -54,6 +54,7 @@ public class BaseInterceptor implements HandlerInterceptor {
 			ModelAndView modelAndView) throws Exception {
 	}
 
+	
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {

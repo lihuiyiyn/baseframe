@@ -11,7 +11,11 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
+
+import cn.lswe.baseframe.bean.base.BaseRspBean;
 import cn.lswe.baseframe.bean.base.BaseUser;
+import cn.lswe.baseframe.global.Constant;
 import cn.lswe.baseframe.util.RedisUtil;
 
 public class BaseInterceptor implements HandlerInterceptor {
@@ -25,28 +29,22 @@ public class BaseInterceptor implements HandlerInterceptor {
 		if (annotation != null) {
 			// 获取到了ChatValidator注解
 			String token = request.getHeader("token");
-			if (token == null) {
-				// token字段为空
-				ServletOutputStream out = response.getOutputStream();
-				OutputStreamWriter ow = new OutputStreamWriter(out, "UTF-8");
-				ow.write("no 没有 session");
-				ow.flush();
-				return false;
-			} else {
+			if (token != null) {
 				BaseUser user = RedisUtil.get(token);
-				if (user == null) {
-					// token在redis中找不到用户信息
-					ServletOutputStream out = response.getOutputStream();
-					OutputStreamWriter ow = new OutputStreamWriter(out, "UTF-8");
-					ow.write("no 没有 session");
-					ow.flush();
-					return false;
-				} else {
-request.
-					request.setAttribute("user", user);
+				if (user != null) {
+					request.setAttribute(Constant.user.LoginUser, user);
 					return true;
 				}
 			}
+			// controller方法上有ChatValidator注解但是token或者根据token在redis取到的User为空
+			ServletOutputStream out = response.getOutputStream();
+			OutputStreamWriter ow = new OutputStreamWriter(out, "UTF-8");
+			BaseRspBean baseRspBean = new BaseRspBean();
+			baseRspBean.setError_message("会话校验失败");
+			baseRspBean.setError_code(-1);
+			ow.write(JSON.toJSONString(baseRspBean));
+			ow.flush();
+			return false;
 		}
 		return true;
 	}

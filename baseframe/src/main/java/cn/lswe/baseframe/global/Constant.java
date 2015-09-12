@@ -30,4 +30,13 @@ public interface Constant {
 		 */
 		public String password = "090811+a090811+a090811+a090811+a090811+a090811+a090811+a090811+a090811+a090811+a";
 	}
+
+	/**
+	 * USER 相关的常量
+	 * 
+	 * @author LauShallwe
+	 */
+	public interface user {
+		public String LoginUser = "loginUser";
+	}
 }

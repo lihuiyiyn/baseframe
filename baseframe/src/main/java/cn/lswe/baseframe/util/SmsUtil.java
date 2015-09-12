@@ -20,6 +20,7 @@ public class SmsUtil {
 
 	/**
 	 * 
+	 * 
 	 * @param uri
 	 *            应用地址，类似于http://ip:port/msg/
 	 * @param account

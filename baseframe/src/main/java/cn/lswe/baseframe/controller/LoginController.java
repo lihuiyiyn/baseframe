@@ -19,6 +19,7 @@ import cn.lswe.baseframe.bean.login.LoginSetCodeReqBean;
 import cn.lswe.baseframe.bean.login.LoginSetEmailReqBean;
 import cn.lswe.baseframe.bean.login.PhoneVerifyCodeReqBean;
 import cn.lswe.baseframe.service.LoginService;
+import cn.lswe.baseframe.util.EmailUtil;
 import cn.lswe.baseframe.util.UserUtil;
 import cn.lswe.baseframe.validator.ChatValidator;
 
@@ -41,6 +42,7 @@ public class LoginController {
 	@RequestMapping(value = "/v1/login", produces = "text/html;charset=UTF-8")
 	public String login(LoginReqBean loginReqBean) {
 		System.out.println(loginReqBean);
+		EmailUtil.testSend();
 		BaseRspBean baseRspBean = loginService.login(loginReqBean);
 		return JSON.toJSONString(baseRspBean);
 	}

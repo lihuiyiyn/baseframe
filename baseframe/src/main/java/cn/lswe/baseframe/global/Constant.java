@@ -58,4 +58,42 @@ public interface Constant {
 
 	}
 
+	/**
+	 * 短信相关配置
+	 * 
+	 * @author LauShallwe
+	 */
+	public interface sms {
+
+		/**
+		 * 其中IP:PORT为服务部署的地址和端口
+		 */
+		public String url = "http://222.73.117.158:80/msg/HttpBatchSendSM";
+
+		/**
+		 * 必填参数。用户账号
+		 */
+		public String account = "shangwuA_dyj1";
+
+		/**
+		 * 必填参数。用户密码
+		 */
+		public String pswd = "Tch111222";
+
+		/**
+		 * 必填参数。是否需要状态报告，取值true或false，true，表明需要状态报告；false不需要状态报告
+		 */
+		public boolean needstatus = true;
+
+		/**
+		 * 可选参数。用户订购的产品id
+		 */
+		public String product = "";
+
+		/**
+		 * 可选参数，扩展码
+		 */
+		public String extno = "";
+	}
+
 }

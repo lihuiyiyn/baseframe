@@ -13,10 +13,26 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.URI;
 import org.apache.commons.httpclient.methods.GetMethod;
 
+import cn.lswe.baseframe.bean.extra.SmsBean;
+import cn.lswe.baseframe.global.Constant;
+
 /**
  * @author LauShallwe
  */
 public class SmsUtil {
+
+	public static String send(SmsBean smsBean) {
+		String retString = "";
+		try {
+			retString = send(Constant.sms.url, Constant.sms.account, Constant.sms.pswd, smsBean.getPhone(),
+					smsBean.getContent(), Constant.sms.needstatus, Constant.sms.product, Constant.sms.extno);
+			System.out.println(retString);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return retString;
+	}
 
 	/**
 	 * 
@@ -36,12 +52,12 @@ public class SmsUtil {
 	 * @return 返回值定义参见HTTP协议文档
 	 * @throws Exception
 	 */
-	public static String send(String uri, String account, String pswd, String mobiles, String content,
+	public static String send(String url, String account, String pswd, String mobiles, String content,
 			boolean needstatus, String product, String extno) throws Exception {
 		HttpClient client = new HttpClient();
 		GetMethod method = new GetMethod();
 		try {
-			URI base = new URI(uri, false);
+			URI base = new URI(url, false);
 			method.setURI(new URI(base, "HttpSendSM", false));
 			method.setQueryString(new NameValuePair[] { new NameValuePair("account", account),
 					new NameValuePair("pswd", pswd), new NameValuePair("mobile", mobiles),

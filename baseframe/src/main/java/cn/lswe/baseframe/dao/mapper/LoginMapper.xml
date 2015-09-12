@@ -9,4 +9,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE
 		USER_NAME=#{account} AND PASSWORD=#{code}
 	</select>
+
+	<select id="getUserByPhone" resultMap="simpleUserMap">
+		SELECT no,Account,
+		phone,mail from account_user where phone =#{phone}
+	</select>
+
+	<resultMap type="cn.lswe.baseframe.dao.entity.UserEntity" id="simpleUserMap">
+		<result column="no" property="no" />
+		<result column="Account" property="account" />
+		<result column="phone" property="phone" />
+		<result column="mail" property="mail" />
+	</resultMap>
 </mapper>

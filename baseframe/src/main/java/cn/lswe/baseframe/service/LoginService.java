@@ -14,6 +14,8 @@ import cn.lswe.baseframe.bean.login.LoginSetCodeReqBean;
 import cn.lswe.baseframe.bean.login.LoginSetEmailReqBean;
 import cn.lswe.baseframe.bean.login.PhoneVerifyCodeReqBean;
 import cn.lswe.baseframe.dao.LoginDao;
+import cn.lswe.baseframe.dao.entity.UserEntity;
+import cn.lswe.baseframe.util.RegexUtil;
 
 /**
  * @author sam
@@ -63,10 +65,17 @@ public class LoginService {
 	public BaseRspBean phoneVerifyCode(PhoneVerifyCodeReqBean phoneVerifyCodeReqBean) {
 		BaseRspBean baseRspBean = new BaseRspBean();
 		// 1.正则匹配手机号码 如果手机号码不符合要求，返回错误信息
-		// 2.去数据库中查询是否有此用户
+		if (RegexUtil.matchPhone(phoneVerifyCodeReqBean.getPhone())) {
+			// 2.去数据库中查询是否有此用户
+			UserEntity userEntity = loginDao.getSimpleUserByPhone(phoneVerifyCodeReqBean.getPhone());
+			if (userEntity == null) {
+				// 用户未注册
+			}
+		}
 		// 3.此用户存在，下发短信验证码，并且需要把验证码放入缓存
 		baseRspBean.setError_message("OK");
 		return baseRspBean;
+
 	}
 
 	/**

@@ -169,6 +169,7 @@ public class LoginService {
 				if (times == 4) {
 					baseRspBean.setError_code(3);
 					baseRspBean.setError_message("验证码失效");
+					RedisUtil.remove(phone);
 				} else {
 					verifyCodeBean.setWrongTime(++times);
 					RedisUtil.putVerifyCode(phone, verifyCodeBean);

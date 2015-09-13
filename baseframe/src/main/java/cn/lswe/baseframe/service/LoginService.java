@@ -48,7 +48,6 @@ public class LoginService {
 			return baseRspBean;
 		} else {
 			int retCode = loginDao.login(loginReqBean);
-			System.out.println(retCode);
 			if (retCode == 0) {
 				baseRspBean.setError_code(-1);
 				baseRspBean.setError_message("账号或者密码错误");
@@ -96,8 +95,7 @@ public class LoginService {
 				}
 				verifyCodeBean.setCode(verifyCode);
 				verifyCodeBean.setTimeStamp(sendSmsResultBean.getTimeStamp());
-				String retStr = RedisUtil.putVerifyCode(phoneVerifyCodeReqBean.getPhone(), verifyCodeBean);
-				System.out.println("放缓存返回结果：" + retStr);
+				RedisUtil.putVerifyCode(phoneVerifyCodeReqBean.getPhone(), verifyCodeBean);
 			} else {
 				// 2.2 短信发送失败
 				baseRspBean.setError_code(-1);
@@ -132,6 +130,7 @@ public class LoginService {
 			int verifyType = verifyCodeBean.getType();
 			if (code.equals(verifyCodeBean.getCode())) {
 				// 短信验证成功
+				RedisUtil.remove(phone);
 				switch (verifyType) {
 				case 0:
 					baseRspBean.setError_code(-1);
@@ -155,7 +154,7 @@ public class LoginService {
 					baseRspBean.setError_code(3);
 					baseRspBean.setError_message("验证码失效");
 				} else {
-					verifyCodeBean.setWrongTime(times++);
+					verifyCodeBean.setWrongTime(++times);
 					RedisUtil.putVerifyCode(phone, verifyCodeBean);
 					baseRspBean.setError_code(3);
 					baseRspBean.setError_message("验证码错误");

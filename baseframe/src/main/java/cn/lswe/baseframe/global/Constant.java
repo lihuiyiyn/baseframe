@@ -54,8 +54,7 @@ public interface Constant {
 
 		public String emailRx = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
 
-		public String phoneRx = "^[1]([3][0-9]{1}|59|58|88|89|70)[0-9]{8}$";
-
+		public String phoneRx = "^[1]([3][0-9]{1}|59|58|88|89|84|70)[0-9]{8}$";
 	}
 
 	/**
@@ -68,7 +67,7 @@ public interface Constant {
 		/**
 		 * 其中IP:PORT为服务部署的地址和端口
 		 */
-		public String url = "http://222.73.117.158:80/msg/HttpBatchSendSM";
+		public String url = "http://222.73.117.158/msg/HttpBatchSendSM";
 
 		/**
 		 * 必填参数。用户账号

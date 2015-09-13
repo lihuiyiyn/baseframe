@@ -30,7 +30,7 @@ public class BaseInterceptor implements HandlerInterceptor {
 			// 获取到了ChatValidator注解
 			String token = request.getHeader("token");
 			if (token != null) {
-				BaseUser user = RedisUtil.get(token);
+				BaseUser user = RedisUtil.getToken(token);
 				if (user != null) {
 					request.setAttribute(Constant.user.LoginUser, user);
 					return true;
@@ -54,7 +54,6 @@ public class BaseInterceptor implements HandlerInterceptor {
 			ModelAndView modelAndView) throws Exception {
 	}
 
-	
 	@Override
 	public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex)
 			throws Exception {

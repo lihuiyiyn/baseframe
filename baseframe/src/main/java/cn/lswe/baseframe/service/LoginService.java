@@ -8,14 +8,20 @@ import org.springframework.stereotype.Component;
 
 import cn.lswe.baseframe.bean.LoginUserInfoData;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
+import cn.lswe.baseframe.bean.extra.SendSmsResultBean;
+import cn.lswe.baseframe.bean.extra.SmsBean;
 import cn.lswe.baseframe.bean.login.LoginPhoneReqBean;
 import cn.lswe.baseframe.bean.login.LoginReqBean;
 import cn.lswe.baseframe.bean.login.LoginSetCodeReqBean;
 import cn.lswe.baseframe.bean.login.LoginSetEmailReqBean;
 import cn.lswe.baseframe.bean.login.PhoneVerifyCodeReqBean;
+import cn.lswe.baseframe.bean.login.VerifyCodeBean;
 import cn.lswe.baseframe.dao.LoginDao;
 import cn.lswe.baseframe.dao.entity.UserEntity;
+import cn.lswe.baseframe.util.RandomUtil;
+import cn.lswe.baseframe.util.RedisUtil;
 import cn.lswe.baseframe.util.RegexUtil;
+import cn.lswe.baseframe.util.SmsUtil;
 
 /**
  * @author sam
@@ -66,16 +72,44 @@ public class LoginService {
 		BaseRspBean baseRspBean = new BaseRspBean();
 		// 1.正则匹配手机号码 如果手机号码不符合要求，返回错误信息
 		if (RegexUtil.matchPhone(phoneVerifyCodeReqBean.getPhone())) {
-			// 2.去数据库中查询是否有此用户
-			UserEntity userEntity = loginDao.getSimpleUserByPhone(phoneVerifyCodeReqBean.getPhone());
-			if (userEntity == null) {
-				// 用户未注册
+			// 2.下发短信
+			String verifyCode = RandomUtil.getSmsVerifyCode();
+			SmsBean smsBean = new SmsBean();
+			smsBean.setContent(verifyCode);
+			smsBean.setPhone(phoneVerifyCodeReqBean.getPhone());
+			SendSmsResultBean sendSmsResultBean = SmsUtil.send(smsBean);
+			if (sendSmsResultBean != null && sendSmsResultBean.getRetCode() == 0) {
+				// 2.1 短信下发成功
+				// 3.去数据库中查询是否有此用户
+				UserEntity userEntity = loginDao.getSimpleUserByPhone(phoneVerifyCodeReqBean.getPhone());
+				VerifyCodeBean verifyCodeBean = new VerifyCodeBean();
+				if (userEntity == null) {
+					// 3.1 用户未注册
+					baseRspBean.setError_code(3);
+					baseRspBean.setError_message("手机号不存在");
+					verifyCodeBean.setType(0);
+				} else {
+					// 3.2 用户已经注册过
+					baseRspBean.setError_code(0);
+					baseRspBean.setError_message("短信发送成功");
+					verifyCodeBean.setType(1);
+				}
+				verifyCodeBean.setCode(verifyCode);
+				verifyCodeBean.setTimeStamp(sendSmsResultBean.getTimeStamp());
+				String retStr = RedisUtil.putVerifyCode(phoneVerifyCodeReqBean.getPhone(), verifyCodeBean);
+				System.out.println("放缓存返回结果：" + retStr);
+			} else {
+				// 2.2 短信发送失败
+				baseRspBean.setError_code(-1);
+				baseRspBean.setError_message("短信发送失败");
 			}
+			return baseRspBean;
+		} else {
+			// 1.2 手机号码格式不合法
+			baseRspBean.setError_code(4);
+			baseRspBean.setError_message("手机号码格式错误");
+			return baseRspBean;
 		}
-		// 3.此用户存在，下发短信验证码，并且需要把验证码放入缓存
-		baseRspBean.setError_message("OK");
-		return baseRspBean;
-
 	}
 
 	/**

@@ -72,7 +72,6 @@ public class LoginService {
 		BaseRspBean baseRspBean = new BaseRspBean();
 		// 1.正则匹配手机号码 如果手机号码不符合要求，返回错误信息
 		if (RegexUtil.matchPhone(phoneVerifyCodeReqBean.getPhone())) {
-			
 			// 2.下发短信
 			String verifyCode = RandomUtil.getSmsVerifyCode();
 			SmsBean smsBean = new SmsBean();

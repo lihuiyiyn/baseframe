@@ -132,6 +132,7 @@ public class LoginService {
 			int verifyType = verifyCodeBean.getType();
 			if (code.equals(verifyCodeBean.getCode())) {
 				// 短信验证成功
+				RedisUtil.remove(phone);
 				switch (verifyType) {
 				case 0:
 					baseRspBean.setError_code(-1);
@@ -155,7 +156,7 @@ public class LoginService {
 					baseRspBean.setError_code(3);
 					baseRspBean.setError_message("验证码失效");
 				} else {
-					verifyCodeBean.setWrongTime(times++);
+					verifyCodeBean.setWrongTime(++times);
 					RedisUtil.putVerifyCode(phone, verifyCodeBean);
 					baseRspBean.setError_code(3);
 					baseRspBean.setError_message("验证码错误");

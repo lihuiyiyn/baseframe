@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import cn.lswe.baseframe.bean.LoginUserInfoData;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
+import cn.lswe.baseframe.bean.base.BaseUser;
 import cn.lswe.baseframe.bean.extra.SendSmsResultBean;
 import cn.lswe.baseframe.bean.extra.SmsBean;
 import cn.lswe.baseframe.bean.login.LoginPhoneReqBean;
@@ -71,6 +72,12 @@ public class LoginService {
 		BaseRspBean baseRspBean = new BaseRspBean();
 		// 1.正则匹配手机号码 如果手机号码不符合要求，返回错误信息
 		if (RegexUtil.matchPhone(phoneVerifyCodeReqBean.getPhone())) {
+			VerifyCodeBean verifyCodeBean = RedisUtil.getVerifyCode(phoneVerifyCodeReqBean.getPhone());
+			if (verifyCodeBean != null) {
+				baseRspBean.setError_code(5);
+				baseRspBean.setError_message("此次忽略，验证码5分钟只能获取一次");
+				return baseRspBean;
+			}
 			// 2.下发短信
 			String verifyCode = RandomUtil.getSmsVerifyCode();
 			SmsBean smsBean = new SmsBean();
@@ -81,7 +88,7 @@ public class LoginService {
 				// 2.1 短信下发成功
 				// 3.去数据库中查询是否有此用户
 				UserEntity userEntity = loginDao.getSimpleUserByPhone(phoneVerifyCodeReqBean.getPhone());
-				VerifyCodeBean verifyCodeBean = new VerifyCodeBean();
+				verifyCodeBean = new VerifyCodeBean();
 				if (userEntity == null) {
 					// 3.1 用户未注册
 					baseRspBean.setError_code(3);
@@ -137,10 +144,19 @@ public class LoginService {
 					baseRspBean.setError_message("新用户");
 					break;
 				case 1:
-					// 去数据库中查询验证账号密码没错
+					// 从数据库中查询要该用户信息
 					LoginUserInfoData loginUserInfoData = new LoginUserInfoData();
 					// 此处放置从DB中查询到的用户信息数据，然后整合到loginUserInfoData
 					baseRspBean.setData(loginUserInfoData);
+					BaseUser baseUser = new BaseUser();
+					baseUser.setEmail(loginUserInfoData.getEmail());
+					baseUser.setPhone(phone);
+					String token = RedisUtil.putUser(baseUser);
+					if (token == null) {
+						// 登录验证成功 但是放缓存失败
+					} else {
+						baseRspBean.setToken(token);
+					}
 					break;
 				case 2:
 					// 设置新密码的方法

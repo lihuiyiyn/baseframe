@@ -33,7 +33,7 @@ public interface Constant {
 		/**
 		 * 短信有效期
 		 */
-		public int SmsExpiryTime = 60 * 3;
+		public int SmsExpiryTime = 60 * 5;
 	}
 
 	/**

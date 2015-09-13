@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import cn.lswe.baseframe.bean.LoginUserInfoData;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
+import cn.lswe.baseframe.bean.base.BaseUser;
 import cn.lswe.baseframe.bean.extra.SendSmsResultBean;
 import cn.lswe.baseframe.bean.extra.SmsBean;
 import cn.lswe.baseframe.bean.login.LoginPhoneReqBean;
@@ -137,10 +138,19 @@ public class LoginService {
 					baseRspBean.setError_message("新用户");
 					break;
 				case 1:
-					// 去数据库中查询验证账号密码没错
+					// 从数据库中查询要该用户信息
 					LoginUserInfoData loginUserInfoData = new LoginUserInfoData();
 					// 此处放置从DB中查询到的用户信息数据，然后整合到loginUserInfoData
 					baseRspBean.setData(loginUserInfoData);
+					BaseUser baseUser = new BaseUser();
+					baseUser.setEmail(loginUserInfoData.getEmail());
+					baseUser.setPhone(phone);
+					String token = RedisUtil.putUser(baseUser);
+					if (token == null) {
+						// 登录验证成功 但是放缓存失败
+					} else {
+						baseRspBean.setToken(token);
+					}
 					break;
 				case 2:
 					// 设置新密码的方法

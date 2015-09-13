@@ -16,6 +16,20 @@ import redis.clients.jedis.Jedis;
 public class RedisUtil {
 
 	/**
+	 * 把User对象放到Redis，返回token
+	 * 
+	 * @param user
+	 * @return
+	 */
+	public static String putUser(BaseUser user) {
+		String token = RandomUtil.getToken();
+		String retStr = putToken(token, user);
+		if ("OK".equals(retStr))
+			return token;
+		return null;
+	}
+
+	/**
 	 * 添加Session
 	 * 
 	 * @param token

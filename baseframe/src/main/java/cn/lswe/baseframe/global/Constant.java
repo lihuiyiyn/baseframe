@@ -55,6 +55,8 @@ public interface Constant {
 		public String emailRx = "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$";
 
 		public String phoneRx = "^[1]([3][0-9]{1}|59|58|88|89|84|70)[0-9]{8}$";
+
+		public String verifyCodeRx = "[0-9]{6}";
 	}
 
 	/**

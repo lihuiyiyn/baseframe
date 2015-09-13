@@ -31,6 +31,16 @@ public class RegexUtil {
 	}
 
 	/**
+	 * 匹配6位数字字符串
+	 * 
+	 * @param verifyCode
+	 * @return
+	 */
+	public static boolean matchVerifyCode(String verifyCode) {
+		return matchRx(verifyCode, Constant.regex.verifyCodeRx);
+	}
+
+	/**
 	 * 匹配
 	 * 
 	 * @param string

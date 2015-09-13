@@ -122,25 +122,50 @@ public class LoginService {
 		BaseRspBean baseRspBean = new BaseRspBean();
 		String phone = loginPhoneReqBean.getPhone();
 		String code = loginPhoneReqBean.getCode();
-		if (phone == null || code == null) {
+		if (RegexUtil.matchPhone(phone) && RegexUtil.matchVerifyCode(code)) {
+			VerifyCodeBean verifyCodeBean = RedisUtil.getVerifyCode(phone);
+			if (verifyCodeBean == null) {
+				baseRspBean.setError_code(3);
+				baseRspBean.setError_message("验证码过期");
+				return baseRspBean;
+			}
+			int verifyType = verifyCodeBean.getType();
+			if (code.equals(verifyCodeBean.getCode())) {
+				// 短信验证成功
+				switch (verifyType) {
+				case 0:
+					baseRspBean.setError_code(-1);
+					baseRspBean.setError_message("新用户");
+					break;
+				case 1:
+					// 去数据库中查询验证账号密码没错
+					LoginUserInfoData loginUserInfoData = new LoginUserInfoData();
+					// 此处放置从DB中查询到的用户信息数据，然后整合到loginUserInfoData
+					baseRspBean.setData(loginUserInfoData);
+					break;
+				case 2:
+					// 设置新密码的方法
+					break;
+				}
+				return baseRspBean;
+			} else {
+				// 验证码错误
+				int times = verifyCodeBean.getWrongTime();
+				if (times == 4) {
+					baseRspBean.setError_code(3);
+					baseRspBean.setError_message("验证码失效");
+				} else {
+					verifyCodeBean.setWrongTime(times++);
+					RedisUtil.putVerifyCode(phone, verifyCodeBean);
+					baseRspBean.setError_code(3);
+					baseRspBean.setError_message("验证码错误");
+				}
+				return baseRspBean;
+			}
+		} else {
 			baseRspBean.setError_code(3);
 			baseRspBean.setError_message("验证码错误");
 			return baseRspBean;
-		} else {
-			// 1.去缓存中验证code 是否正确
-			// 2.正确时
-			if (code.equals("new")) // 假方法
-			{
-				baseRspBean.setError_code(-1);
-				baseRspBean.setError_message("新用户");
-				return baseRspBean;
-			} else {
-				// 去数据库中查询验证账号密码没错
-				LoginUserInfoData loginUserInfoData = new LoginUserInfoData();
-				// 此处放置从DB中查询到的用户信息数据，然后整合到loginUserInfoData
-				baseRspBean.setData(loginUserInfoData);
-				return baseRspBean;
-			}
 		}
 	}
 

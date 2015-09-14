@@ -156,6 +156,9 @@ public class LoginService {
 					}
 				}
 			}
+		} else {
+			baseRspBean.setError_code(-1);
+			baseRspBean.setError_message("手机号码或者验证码格式有误");
 		}
 		return baseRspBean;
 	}

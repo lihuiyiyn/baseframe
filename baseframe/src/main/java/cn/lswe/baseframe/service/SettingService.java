@@ -16,6 +16,7 @@ import cn.lswe.baseframe.bean.setting.AddGroupMemberReqBean;
 import cn.lswe.baseframe.bean.setting.DelExpressAddressReqBean;
 import cn.lswe.baseframe.bean.setting.DelGroupMemberReqBean;
 import cn.lswe.baseframe.bean.setting.LoginSetNewCodeReqBean;
+import cn.lswe.baseframe.util.RegexUtil;
 
 /**
  * @author LauShallwe
@@ -32,6 +33,11 @@ public class SettingService {
 	public BaseRspBean loginSerNewCode(LoginSetNewCodeReqBean loginSetNewCodeReqBean) {
 		BaseRspBean baseRspBean = new BaseRspBean();
 		// 0.正则匹配密码是否符合规则
+		if (RegexUtil.matchPsw(loginSetNewCodeReqBean.getCode())) {
+
+		} else {
+
+		}
 		// 1.根据token到缓存中取用户信息
 		// 2.DB中更新密码
 		return baseRspBean;

@@ -11,6 +11,16 @@ import cn.lswe.baseframe.global.Constant;
 public class RegexUtil {
 
 	/**
+	 * 匹配是否密码格式
+	 * 
+	 * @param password
+	 * @return
+	 */
+	public static boolean matchPsw(String password) {
+		return matchRx(password, Constant.regex.pswRx);
+	}
+
+	/**
 	 * 匹配字符串是否是邮箱
 	 * 
 	 * @param email

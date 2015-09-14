@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		PHONE = #{phone}
 	</select>
 
-	<resultMap type="cn.lswe.baseFrame.bean.base.BaseUser" id="BaseUserMap">
+	<resultMap type="cn.lswe.baseframe.bean.base.BaseUser" id="BaseUserMap">
 		<result column="PHONE" property="phone" />
 		<result column="MAIL" property="email" />
 	</resultMap>

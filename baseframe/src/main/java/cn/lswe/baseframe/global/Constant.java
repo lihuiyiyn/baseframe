@@ -57,6 +57,8 @@ public interface Constant {
 		public String phoneRx = "^[1]([3][0-9]{1}|59|58|88|89|84|70)[0-9]{8}$";
 
 		public String verifyCodeRx = "[0-9]{6}";
+
+		public String pswRx = "^[0-9a-zA-Z]{6,16}$";
 	}
 
 	/**

@@ -3,6 +3,8 @@
  */
 package cn.lswe.baseframe.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +16,15 @@ import cn.lswe.baseframe.bean.UserSettingEmailReqBean;
 import cn.lswe.baseframe.bean.UserSettingNickNameReqBean;
 import cn.lswe.baseframe.bean.base.BaseReqBean;
 import cn.lswe.baseframe.bean.base.BaseRspBean;
+import cn.lswe.baseframe.bean.base.BaseUser;
 import cn.lswe.baseframe.bean.setting.AddExpressAddressReqBean;
 import cn.lswe.baseframe.bean.setting.AddGroupMemberReqBean;
 import cn.lswe.baseframe.bean.setting.DelExpressAddressReqBean;
 import cn.lswe.baseframe.bean.setting.DelGroupMemberReqBean;
 import cn.lswe.baseframe.bean.setting.LoginSetNewCodeReqBean;
+import cn.lswe.baseframe.global.Constant;
 import cn.lswe.baseframe.service.SettingService;
+import cn.lswe.baseframe.validator.ChatValidator;
 
 /**
  * @author LauShallwe
@@ -36,9 +41,11 @@ public class SettingController {
 	 * @param loginSetNewCodeReqBean
 	 * @return
 	 */
+	@ChatValidator
 	@ResponseBody
 	@RequestMapping(value = "/v1/login_set_code", produces = "text/html;charset=UTF-8")
-	public String loginSetNewCode(LoginSetNewCodeReqBean loginSetNewCodeReqBean) {
+	public String loginSetNewCode(LoginSetNewCodeReqBean loginSetNewCodeReqBean, HttpServletRequest request) {
+		loginSetNewCodeReqBean.setUser((BaseUser) request.getAttribute(Constant.user.LoginUser));
 		BaseRspBean baseRspBean = settingService.loginSerNewCode(loginSetNewCodeReqBean);
 		return JSON.toJSONString(baseRspBean);
 	}

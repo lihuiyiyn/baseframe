@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import cn.lswe.baseframe.bean.base.BaseUser;
 import cn.lswe.baseframe.bean.login.LoginReqBean;
 import cn.lswe.baseframe.dao.entity.UserEntity;
 
@@ -21,6 +22,17 @@ public class LoginDao {
 
 	@Autowired
 	private SqlSession sqlSession;
+
+	/**
+	 * 获取到用户的基本信息
+	 * 
+	 * @param phone
+	 * @return
+	 */
+	public BaseUser getBaseUserByPhone(String phone) {
+		Map<String, String> map = new HashMap<String, String>();
+		return sqlSession.selectOne("LoginMapper.getBaseUserByPhone", map);
+	}
 
 	/**
 	 * @param userReqBen

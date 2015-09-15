@@ -16,6 +16,11 @@ public class UserEntity extends BaseEntity {
 	private String phone;
 
 	/**
+	 * 密码
+	 */
+	private String code;
+
+	/**
 	 * Email
 	 */
 	private String mail;
@@ -51,6 +56,21 @@ public class UserEntity extends BaseEntity {
 	}
 
 	/**
+	 * @return the code
+	 */
+	public String getCode() {
+		return code;
+	}
+
+	/**
+	 * @param code
+	 *            the code to set
+	 */
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	/**
 	 * @return the mail
 	 */
 	public String getMail() {
@@ -67,6 +87,6 @@ public class UserEntity extends BaseEntity {
 
 	@Override
 	public String toString() {
-		return "UserEntity [account=" + account + ", phone=" + phone + ", mail=" + mail + "]";
+		return "UserEntity [account=" + account + ", phone=" + phone + ", code=" + code + ", mail=" + mail + "]";
 	}
 }

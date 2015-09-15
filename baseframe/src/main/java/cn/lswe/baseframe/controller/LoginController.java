@@ -13,14 +13,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSON;
 
 import cn.lswe.baseframe.bean.base.BaseRspBean;
-import cn.lswe.baseframe.bean.extra.SmsBean;
 import cn.lswe.baseframe.bean.login.LoginPhoneReqBean;
 import cn.lswe.baseframe.bean.login.LoginReqBean;
 import cn.lswe.baseframe.bean.login.LoginSetCodeReqBean;
 import cn.lswe.baseframe.bean.login.LoginSetEmailReqBean;
 import cn.lswe.baseframe.bean.login.PhoneVerifyCodeReqBean;
 import cn.lswe.baseframe.service.LoginService;
-import cn.lswe.baseframe.util.SmsUtil;
 import cn.lswe.baseframe.util.UserUtil;
 import cn.lswe.baseframe.validator.ChatValidator;
 
@@ -40,13 +38,8 @@ public class LoginController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/v1/login", produces = "text/html;charset=UTF-8")
+	@RequestMapping(value = "/v1/login", produces = "application/json;charset=UTF-8")
 	public String login(LoginReqBean loginReqBean) {
-		System.out.println(loginReqBean);
-		SmsBean smsBean = new SmsBean();
-		smsBean.setContent("1024");
-		smsBean.setPhone("13823531024");
-		SmsUtil.send(smsBean);
 		BaseRspBean baseRspBean = loginService.login(loginReqBean);
 		return JSON.toJSONString(baseRspBean);
 	}

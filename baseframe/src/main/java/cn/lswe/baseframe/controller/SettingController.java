@@ -24,6 +24,7 @@ import cn.lswe.baseframe.bean.setting.DelGroupMemberReqBean;
 import cn.lswe.baseframe.bean.setting.LoginSetNewCodeReqBean;
 import cn.lswe.baseframe.global.Constant;
 import cn.lswe.baseframe.service.SettingService;
+import cn.lswe.baseframe.util.UserUtil;
 import cn.lswe.baseframe.validator.ChatValidator;
 
 /**
@@ -69,9 +70,11 @@ public class SettingController {
 	 * @param userSettingEmailReqBeanF
 	 * @return
 	 */
+	@ChatValidator
 	@ResponseBody
 	@RequestMapping(value = "/v1/user_setting_email", produces = "text/html;charset=UTF-8")
-	public String userSettingEmail(UserSettingEmailReqBean userSettingEmailReqBean) {
+	public String userSettingEmail(UserSettingEmailReqBean userSettingEmailReqBean, HttpServletRequest request) {
+		userSettingEmailReqBean.setUser(UserUtil.getUser(request));
 		BaseRspBean baseRspBean = settingService.userSettingEmail(userSettingEmailReqBean);
 		return JSON.toJSONString(baseRspBean);
 	}

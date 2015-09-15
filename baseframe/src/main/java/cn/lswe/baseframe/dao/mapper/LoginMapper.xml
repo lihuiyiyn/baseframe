@@ -14,15 +14,31 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		PHONE = #{phone}
 	</select>
 
+	<select id="getBaseUserByMail" resultMap="BaseUserMap">
+		SELECT
+		PHONE,
+		MAIL
+		FROM
+		account_user
+		WHERE
+		MAIL = #{mail}
+	</select>
+
 	<resultMap type="cn.lswe.baseframe.bean.base.BaseUser" id="BaseUserMap">
 		<result column="PHONE" property="phone" />
 		<result column="MAIL" property="email" />
 	</resultMap>
 
-	<select id="login" resultType="Integer">
-		SELECT COUNT(0) FROM USER
+	<select id="login" resultMap="BaseUserMap">
+		SELECT
+		PHONE,
+		MAIL
+		FROM
+		account_user
 		WHERE
-		USER_NAME=#{account} AND PASSWORD=#{code}
+		MAIL
+		OR PHONE = #{account}
+		AND CODE = #{code}
 	</select>
 
 	<select id="getUserByPhone" resultMap="simpleUserMap">

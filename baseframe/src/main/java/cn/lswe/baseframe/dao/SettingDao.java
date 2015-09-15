@@ -1,3 +1,6 @@
+/**
+ * 
+ */
 package cn.lswe.baseframe.dao;
 
 import org.apache.ibatis.session.SqlSession;
@@ -6,8 +9,11 @@ import org.springframework.stereotype.Repository;
 
 import cn.lswe.baseframe.dao.entity.UserEntity;
 
+/**
+ * @author LauShallwe
+ */
 @Repository
-public class UserDao {
+public class SettingDao {
 
 	@Autowired
 	private SqlSession sqlSession;
@@ -19,7 +25,7 @@ public class UserDao {
 	 * @return
 	 */
 	public int setUserCode(UserEntity userEntity) {
-		return sqlSession.insert("UserMapper.setCode", userEntity);
+		return sqlSession.insert("SettingMapper.setCode", userEntity);
 	}
 
 	/**
@@ -29,7 +35,7 @@ public class UserDao {
 	 * @return
 	 */
 	public int updateUserCode(UserEntity userEntity) {
-		return sqlSession.update("UserMapper.updateCode", userEntity);
+		return sqlSession.update("SettingMapper.updateCode", userEntity);
 	}
 
 	/**
@@ -39,6 +45,7 @@ public class UserDao {
 	 * @return
 	 */
 	public int updateUserMail(UserEntity userEntity) {
-		return sqlSession.update("UserMapper.updateMail", userEntity);
+		return sqlSession.update("SettingMapper.updateMail", userEntity);
 	}
+
 }

@@ -39,23 +39,18 @@ public class LoginService {
 	 */
 	public BaseRspBean login(LoginReqBean loginReqBean) {
 		BaseRspBean baseRspBean = new BaseRspBean();
-		String account = loginReqBean.getAccount();
-		String code = loginReqBean.getCode();
-		if (account == null || code == null) {
-			baseRspBean.setError_code(-1);
-			baseRspBean.setError_message("账号或密码为空");
-			return baseRspBean;
-		} else {
-			int retCode = loginDao.login(loginReqBean);
-			if (retCode == 0) {
+		if (loginReqBean != null && loginReqBean.getAccount() != null && loginReqBean.getCode() != null) {
+			BaseUser baseUser = loginDao.login(loginReqBean);
+			if (baseUser == null) {
 				baseRspBean.setError_code(-1);
 				baseRspBean.setError_message("账号或者密码错误");
-				return baseRspBean;
-			} else if (retCode > 0) {
-				baseRspBean.setError_message("还未完成生成token的方法，此接口返回只用于测试使用");
-				baseRspBean.setToken("1024");
-				return baseRspBean;
+			} else {
+				String token = RedisUtil.putUser(baseUser);
+				baseRspBean.setToken(token);
 			}
+		} else {
+			baseRspBean.setError_code(-1);
+			baseRspBean.setError_message("账号或密码为空");
 		}
 		return baseRspBean;
 	}

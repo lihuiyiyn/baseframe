@@ -24,13 +24,26 @@ public class LoginDao {
 	private SqlSession sqlSession;
 
 	/**
-	 * 获取到用户的基本信息
+	 * 获取到用户的基本信息byPhone
 	 * 
 	 * @param phone
 	 * @return
 	 */
 	public BaseUser getBaseUserByPhone(String phone) {
 		Map<String, String> map = new HashMap<String, String>();
+		map.put("phone", phone);
+		return sqlSession.selectOne("LoginMapper.getBaseUserByPhone", map);
+	}
+
+	/**
+	 * 获取到用户的基本信息byMail
+	 * 
+	 * @param mail
+	 * @return
+	 */
+	public BaseUser getBaseUserByMail(String mail) {
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("mail", mail);
 		return sqlSession.selectOne("LoginMapper.getBaseUserByPhone", map);
 	}
 
@@ -38,7 +51,7 @@ public class LoginDao {
 	 * @param userReqBen
 	 * @return
 	 */
-	public int login(LoginReqBean loginReqBean) {
+	public BaseUser login(LoginReqBean loginReqBean) {
 		return sqlSession.selectOne("LoginMapper.login", loginReqBean);
 	}
 

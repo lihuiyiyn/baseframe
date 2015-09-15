@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="SettingMapper">
+
+	<insert id="setCode">
+		INSERT INTO account_user (PHONE, CODE)
+		VALUES
+		(#{phone}, #{code})
+	</insert>
+
+	<update id="updateCode">
+		UPDATE account_user SET CODE =#{code} WHERE PHONE =
+		#{phone}
+	</update>
+
+	<update id="updateMail">
+		UPDATE account_user SET mail =#{mail} WHERE
+		PHONE =
+		#{phone}
+	</update>
+
+</mapper>

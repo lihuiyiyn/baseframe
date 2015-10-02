@@ -38,7 +38,7 @@ public class LoginController {
 	 * @return
 	 */
 	@ResponseBody
-	@RequestMapping(value = "/v1/login", produces = "application/json;charset=UTF-8")
+	@RequestMapping(value = "/v1/login", produces = " /json;charset=UTF-8")
 	public String login(LoginReqBean loginReqBean) {
 		BaseRspBean baseRspBean = loginService.login(loginReqBean);
 		return JSON.toJSONString(baseRspBean);
